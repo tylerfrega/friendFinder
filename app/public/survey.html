@@ -56,11 +56,11 @@
           <div>I like cats</div>
           <div class="col-md-4">
           <select class="form-control" id="questionTwo" >
-            <option>1 (strongly disagree)</option>
+            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
-            <option>5 (strongly agree)</option>
+            <option>5</option>
           </select>
           </div>
         </div>
@@ -74,11 +74,11 @@
           <div>I like dogs</div>
           <div class="col-md-4">
           <select class="form-control" id="questionThree" >
-            <option>1 (strongly disagree)</option>
+            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
-            <option>5 (strongly agree)</option>
+            <option>5</option>
           </select>
           </div>
         </div>
@@ -92,11 +92,11 @@
           <div>Rick and morty is the greatest show ever.</div>
           <div class="col-md-4">
           <select class="form-control" id="questionFour" >
-            <option>1 (strongly disagree)</option>
+            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
-            <option>5 (strongly agree)</option>
+            <option>5</option>
           </select>
           </div>
         </div>
@@ -110,11 +110,11 @@
           <div>Donald Trump is a dangerous boob.</div>
           <div class="col-md-4">
           <select class="form-control" id="questionFive" >
-            <option>1 (strongly disagree)</option>
+            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
-            <option>5 (strongly agree)</option>
+            <option>5</option>
           </select>
           </div>
         </div>
@@ -128,11 +128,11 @@
             <div>Inception is dumb and dosen't make any sense. (So are most Nolan movies...think about it)</div>
             <div class="col-md-4">
             <select class="form-control" id="questionSix" >
-              <option>1 (strongly disagree)</option>
+              <option>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>
-              <option>5 (strongly agree)</option>
+              <option>5</option>
             </select>
             </div>
           </div>
@@ -146,11 +146,11 @@
       <div>Mustached men are most hansome.</div>
       <div class="col-md-4">
       <select class="form-control" id="questionSeven" >
-        <option>1 (strongly disagree)</option>
+        <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
-        <option>5 (strongly agree)</option>
+        <option>5</option>
       </select>
       </div>
     </div>
@@ -164,11 +164,11 @@
         <div>Game of thrones is really good this season.</div>
         <div class="col-md-4">
         <select class="form-control" id="questionEight" >
-          <option>1 (strongly disagree)</option>
+          <option>1</option>
           <option>2</option>
           <option>3</option>
           <option>4</option>
-          <option>5 (strongly agree)</option>
+          <option>5</option>
         </select>
         </div>
       </div>
@@ -182,11 +182,11 @@
           <div>The Goonies does not hold up and is overrated. It only seems good through the lense of your childhood. Back to the future, however is a cenima masterpiece.</div>
           <div class="col-md-4">
           <select class="form-control" id="questionNine" >
-            <option>1 (strongly disagree)</option>
+            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
-            <option>5 (strongly agree)</option>
+            <option>5</option>
           </select>
           </div>
         </div>
@@ -200,11 +200,11 @@
             <div>I would never date someone who listens to Coldplay.</div>
             <div class="col-md-4">
             <select class="form-control" id="questionTen" >
-              <option>1 (strongly disagree)</option>
+              <option>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>
-              <option>5 (strongly agree)</option>
+              <option>5</option>
             </select>
             </div>
           </div>
@@ -224,10 +224,20 @@
 <script>
 
   $('#submitBtn').on('click', function(){
+
+    var values = Array.from($(".form-control").find(':selected')).map(function(item){
+    return $(item).val();
+  
+});
+ 
+  
+  
+
     console.log('btn clicked');
     var newFriend = {
       name: $('#name').val().trim(),
-      photo: $('#photo').val().trim()
+      photo: $('#photo').val().trim(),
+      scores: values
     }
 
     $.post("/api/friends", newFriend)
@@ -236,6 +246,7 @@
         alert("Adding friend...");
       });
 
+    
 
 
 
