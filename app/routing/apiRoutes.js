@@ -17,7 +17,7 @@ module.exports = function(app){
     findScoreDifferences()
     findBestMatch(totalDifference, friends);
     res.json(true);
-    console.log(totalDifference);
+    
 
 
 
@@ -50,9 +50,10 @@ module.exports = function(app){
         for(j=0; j<friendsArray.length; j++){
             if(matchIndex === j){
                bestMatch = friendsArray[j];
+               friends.push(bestMatch);
             }
         }
-        console.log(smallest);
+        
         console.log(bestMatch);
         
     }

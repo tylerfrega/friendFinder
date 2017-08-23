@@ -216,6 +216,28 @@
   </div>
 
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your New Friend</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 id="friendName"></h3>
+        <div><img id="friendPhoto"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </div>
 
 
@@ -229,8 +251,6 @@
   
 });
 
-
-  console.log('btn clicked');
   var newFriend = {
     name: $('#name').val().trim(),
     photo: $('#photo').val().trim(),
@@ -242,23 +262,28 @@
   function(data) {
     if(data){
       console.log(data);
-      alert("Adding friend...");
     }
     });
 
   displayBestMatch();
 });
 
-function displayBestMatch(){
-  var currentURL = window.location.origin;
+  function displayBestMatch(){
+    var currentURL = window.location.origin;
 
-   $.ajax({ url: currentURL + "/api/friends", method: "GET" })
-      .done(function(friendsData) {
-        console.log(friendsData);
-})
-}
+    $.ajax({ url: currentURL + "/api/friends", method: "GET" })
+        .done(function(friendsData) {
+          console.log(friendsData[6]);
+          $('#friendName').html(friendsData[6].name);
+         $('#friendPhoto').attr('src',friendsData[6].photo);
+          $('#myModal').modal('show');
+
+          
+  });
+  }
 
 </script>
+
 
 
 </body>
