@@ -1,0 +1,19 @@
+{
+  "name": "friend_finder",
+  "version": "1.0.0",
+  "description": "find friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerfrega/friendFinder.git"
+  },
+  "author": "tyler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tylerfrega/friendFinder/issues"
+  },
+  "homepage": "https://github.com/tylerfrega/friendFinder#readme"
+}

@@ -216,8 +216,6 @@
   </div>
 
 
-
-
 </div>
 
 
@@ -226,37 +224,27 @@
   $('#submitBtn').on('click', function(){
 
     var values = Array.from($(".form-control").find(':selected')).map(function(item){
+    
     return $(item).val();
   
 });
- 
+
+
+  console.log('btn clicked');
+  var newFriend = {
+    name: $('#name').val().trim(),
+    photo: $('#photo').val().trim(),
+    scores: values
+  }
+
+  $.post("/api/friends", newFriend)
+    .done(function(data) {
+      console.log(data);
+      alert("Adding friend...");
+    });
+
   
-  
-
-    console.log('btn clicked');
-    var newFriend = {
-      name: $('#name').val().trim(),
-      photo: $('#photo').val().trim(),
-      scores: values
-    }
-
-    $.post("/api/friends", newFriend)
-      .done(function(data) {
-        console.log(data);
-        alert("Adding friend...");
-      });
-
-    
-
-
-
-
-
-
-
-
-
-  });
+});
 
 
 
