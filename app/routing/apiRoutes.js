@@ -13,11 +13,10 @@ module.exports = function(app){
     var currentFriend = req.body;
     var totalDifference = [];
     var bestMatch;
-   
-     
+
      for(i=0; i< friends.length; i++){
         var differencesArray = [];
-
+        
          for(j=0; j < friends[i].scores.length; j++){
             
             var differences = Math.abs(friends[i].scores[j] - currentFriend.scores[j]);
@@ -26,13 +25,18 @@ module.exports = function(app){
              }
              sumArray(differencesArray, totalDifference);
          }
-         
+
+         findBestMatch(totalDifference, friends);
          console.log(totalDifference);
-       
+
+
         res.json(true);
     });
 
    
+
+
+
 
     function sumArray(arr, resultHolder ) {
         var total = 0;
@@ -43,6 +47,26 @@ module.exports = function(app){
     }
 
 
+    function findBestMatch(arr, friendsArray){
+        var match;
+        var smallest = arr[0];
+        var matchIndex;
+        for (var i=0; i<arr.length; i++){
+            if (arr[i]<smallest){
+                smallest = arr[i];
+                matchIndex = i;
+            }
+        }
+        for(j=0; j<friendsArray.length; j++){
+            if(matchIndex === j){
+                console.log('boobs');
+               match = friendsArray[j];
+            }
+        }
+        console.log(smallest);
+        console.log(match);
+        
+    }
 
 
 };
