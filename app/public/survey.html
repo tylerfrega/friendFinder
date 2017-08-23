@@ -18,6 +18,9 @@
   <div class="jumbotron">
     <h1>Take our Friend Finding survey</h1>
     <h3>A place for lonley people to be lonley together</h3>
+    <a href="/home">
+      <button class="btn btn-default">Home</button>
+    </a>
   </div>
 
   <div class="form-group">
@@ -243,10 +246,14 @@
 
 <script>
 
-  $('#submitBtn').on('click', function(){
+  $('#submitBtn').on('click', postSurveyData);
 
-   var values = Array.from($(".form-control").find(':selected')).map(function(item){
-    return $(item).val();
+
+
+
+function postSurveyData(){
+  var values = Array.from($(".form-control").find(':selected')).map(function(item){
+   return $(item).val();
   });
 
   var newFriend = {
@@ -263,16 +270,22 @@
     }
     });
   displayBestMatch();
-});
+  }
+
+
 
   function displayBestMatch(){
     var currentURL = window.location.origin;
 
     $.ajax({ url: currentURL + "/api/match", method: "GET" })
         .done(function(matchData) {
-          console.log(matchData);
-          $('#friendName').html(matchData[0].name);
-          $('#friendPhoto').attr('src', matchData[0].photo);
+          
+
+          var currentMatch = matchData.slice(-1)[0]
+          console.log(currentMatch);
+
+          $('#friendName').html(currentMatch.name);
+          $('#friendPhoto').attr('src', currentMatch.photo);
           $('#myModal').modal('show');
 
           
