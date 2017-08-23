@@ -245,11 +245,9 @@
 
   $('#submitBtn').on('click', function(){
 
-    var values = Array.from($(".form-control").find(':selected')).map(function(item){
-    
+   var values = Array.from($(".form-control").find(':selected')).map(function(item){
     return $(item).val();
-  
-});
+  });
 
   var newFriend = {
     name: $('#name').val().trim(),
@@ -264,18 +262,17 @@
       console.log(data);
     }
     });
-
   displayBestMatch();
 });
 
   function displayBestMatch(){
     var currentURL = window.location.origin;
 
-    $.ajax({ url: currentURL + "/api/friends", method: "GET" })
-        .done(function(friendsData) {
-          console.log(friendsData[6]);
-          $('#friendName').html(friendsData[6].name);
-         $('#friendPhoto').attr('src',friendsData[6].photo);
+    $.ajax({ url: currentURL + "/api/match", method: "GET" })
+        .done(function(matchData) {
+          console.log(matchData);
+          $('#friendName').html(matchData[0].name);
+          $('#friendPhoto').attr('src', matchData[0].photo);
           $('#myModal').modal('show');
 
           

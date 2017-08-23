@@ -1,5 +1,5 @@
-
 var friends = require('../data/friends');
+var currentMatch = require('../data/match');
 
 
 module.exports = function(app){
@@ -7,6 +7,11 @@ module.exports = function(app){
     app.get("/api/friends", function(req, res){
         res.json(friends);
     });
+
+    app.get("/api/match", function(req, res){
+        res.json(currentMatch);
+    });
+
 
     app.post("/api/friends", function(req, res){
        
@@ -41,7 +46,7 @@ module.exports = function(app){
         
         var smallest = arr[0];
         var matchIndex;
-        for (var i=0; i<arr.length; i++){
+        for (i=0; i<arr.length; i++){
             if (arr[i]<smallest){
                 smallest = arr[i];
                 matchIndex = i;
@@ -50,7 +55,8 @@ module.exports = function(app){
         for(j=0; j<friendsArray.length; j++){
             if(matchIndex === j){
                bestMatch = friendsArray[j];
-               friends.push(bestMatch);
+               console.log(currentMatch)
+               currentMatch.push(bestMatch);
             }
         }
         
