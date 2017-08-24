@@ -55,7 +55,6 @@ module.exports = function(app){
         for(j=0; j<friendsArray.length; j++){
             if(matchIndex === j){
                bestMatch = friendsArray[j];
-               console.log(currentMatch)
                currentMatch.push(bestMatch);
             }
         }
